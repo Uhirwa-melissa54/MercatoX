@@ -1,27 +1,52 @@
 package com.chinese.e_commerce_backend.entities;
 import jakarta.persistence.*;
+import org.w3c.dom.Text;
 
 @Entity
+@Table(
+        name = "products",
+        uniqueConstraints = {
+                @UniqueConstraint(name="product_name_unique", columnNames = "product_name")
+        }
+)
 public class Product {
     @Id
     @SequenceGenerator(
             name = "product_id_Sequence",
-            sequenceName = "product_squence",
+            sequenceName = "product_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "product_id_Sequence"
     )
-    private int productId;
+    @Column(
+            name = "id"
+    )
+    private Long productId;
+    @Column(
+            name="product_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String productName;
+    @Column(
+            name="product_price",
+            nullable = false
+
+    )
     private double productPrice;
+    @Column(
+            name="product_stock",
+            nullable = false
+    )
     private int productStock;
 
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
     public String getProductName() {
