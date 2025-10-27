@@ -10,6 +10,7 @@ import org.w3c.dom.Text;
         }
 )
 public class Product {
+
     @Id
     @SequenceGenerator(
             name = "product_id_Sequence",
@@ -42,6 +43,15 @@ public class Product {
             nullable = false
     )
     private int productStock;
+    public Product() {};
+
+     public Product(String productName,double productPrice,int productStock){
+
+        this.productName=productName;
+        this.productPrice=productPrice;
+        this.productStock=productStock;
+
+    }
 
     public Long getProductId() {
         return productId;
