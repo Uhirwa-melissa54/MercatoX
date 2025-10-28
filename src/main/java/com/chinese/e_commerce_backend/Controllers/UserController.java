@@ -1,6 +1,6 @@
 package com.chinese.e_commerce_backend.Controllers;
 
-import com.chinese.e_commerce_backend.entities.User;
+import com.chinese.e_commerce_backend.dto.UserDto;
 import com.chinese.e_commerce_backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,10 @@ import java.util.List;
 public class UserController {
     UserRepository userRepository;
     @GetMapping
-    public Iterable<User> findAll() {
-        return userRepository.findAll();
+    public List<UserDto> findAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(user-> new UserDto(user.getId(),user.getUsername(),user.getEmail())).toList();
     }
     @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable Long id) {
@@ -27,7 +29,8 @@ public class UserController {
         if(user==null){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(user);
+        var userDto=new UserDto(user.getId(),user.getUsername(),user.getEmail());
+        return ResponseEntity.ok(userDto);
     }
 
 }
