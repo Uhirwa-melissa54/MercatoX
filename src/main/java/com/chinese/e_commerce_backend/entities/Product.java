@@ -1,7 +1,16 @@
 package com.chinese.e_commerce_backend.entities;
 import jakarta.persistence.*;
 import org.w3c.dom.Text;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(
         name = "products",
@@ -43,39 +52,13 @@ public class Product {
             nullable = false
     )
     private int productStock;
-    public Product() {};
-
-     public Product(String productName,double productPrice,int productStock){
-
-        this.productName=productName;
-        this.productPrice=productPrice;
-        this.productStock=productStock;
-
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-    public String getProductName() {
-        return productName;
-    }
-    public void setProductName(String productName) {
+    public Product(String productName, double productPrice, int productStock) {
         this.productName = productName;
-    }
-    public double getProductPrice() {
-        return productPrice;
-    }
-    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
-
-    }
-    public int getProductStock() {
-        return productStock;
-    }
-    public void setProductStock(int productStock) {
         this.productStock = productStock;
     }
+
+
+
+
 }
