@@ -15,11 +15,6 @@ public class ECommerceBackendApplication {
         SpringApplication.run(ECommerceBackendApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(ProductRepository productRepository) {
-        return args -> {
-            Product product = new Product("Banana", 5000, 20);
-            productRepository.save(product);
-        };
-    }
+
+
 }
