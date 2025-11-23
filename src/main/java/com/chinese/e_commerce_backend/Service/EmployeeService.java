@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     public boolean checkExistance(String email,String name){
-        List<Employee> exitEm=employeeRepository.checkExistance(email);
+        List<Employee> exitEm=employeeRepository.findByNameAndEmail(name,email);
         if(exitEm!=null){
             return true;
         }
