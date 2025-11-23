@@ -33,10 +33,14 @@ public class EmployeeService {
     }
 
     public boolean loginEmployee(String email, String password){
+        Employee employee = employeeRepository.findByEmail(email);
+        boolean exist=checkEmail(email);
+        if(exist){
+            return employee.getPassword().equals(password);
+        }
+        else{
+            return false;
+        }
         
-
-     
-
-       
     }
 }
