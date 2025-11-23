@@ -7,6 +7,6 @@ import com.chinese.e_commerce_backend.entities.Employee;
 
 public interface EmployeeRepository  extends JpaRepository <Employee, Long>{
     List<Employee> findByNameAndEmail(String name,String email);
-    List<Employee> findByEmail(String email);
+    Employee findByEmail(String email);
     
 }

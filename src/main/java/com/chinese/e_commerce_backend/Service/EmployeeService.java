@@ -24,12 +24,19 @@ public class EmployeeService {
     }
 
     public boolean loginEmployee(String email,String password){
-        List<Employee> employees= employeeRepository.findByEmail(email);
-        if(employees.isEmpty()){
+        Employee employees= employeeRepository.findByEmail(email);
+        if(employees.equals(null)){
             return false;
         }
-        else {
-            if()
+        else{
+            if(employees.getPassword()==password){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
         }
 
     }
