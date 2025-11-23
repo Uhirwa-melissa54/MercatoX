@@ -12,7 +12,7 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     public boolean checkExistance(String email,String name){
         List<Employee> exitEm=employeeRepository.findByNameAndEmail(name,email);
-        if(exitEm!=null){
+        if(!exitEm.isEmpty()){
             return true;
         }
         return false;
