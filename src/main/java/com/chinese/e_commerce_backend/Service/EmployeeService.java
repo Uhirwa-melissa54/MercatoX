@@ -23,13 +23,20 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public boolean loginEmployee(String email, String password){
+    public boolean checkEmail(String email){
         Employee employee = employeeRepository.findByEmail(email);
-
-        if (employee == null) {
+           if (employee == null) {
             return false;
         }
+        return true;
 
-        return employee.getPassword().equals(password);
+    }
+
+    public boolean loginEmployee(String email, String password){
+        
+
+     
+
+       
     }
 }

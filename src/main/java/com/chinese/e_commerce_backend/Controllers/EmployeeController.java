@@ -29,7 +29,22 @@ public class EmployeeController {
 
 
     }
-    
+
+       @PostMapping("/login")
+    ResponseEntity<RegisterResponseDto> signin(Employee employee){
+    boolean exist= employeeService.findByEmail
+    if(exist){
+        return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists","No name"));
+    }
+    Employee em1=employeeService.saveEmployee(employee);
+    if(em1.equals(null)){
+        return ResponseEntity.status(500).body(new RegisterResponseDto("Error saving the user","No name"));
+    }
+    return ResponseEntity.status(201).body(new RegisterResponseDto("User created succesfully",em1.getName()));
+
+
+    }
+
 
     
 }
