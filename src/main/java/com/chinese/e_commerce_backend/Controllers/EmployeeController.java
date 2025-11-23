@@ -17,8 +17,16 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @PostMapping("/signup")
     ResponseEntity<RegisterResponseDto> signup(Employee employee){
-        List<Employee> exist= employeeService.checkExistance(employee.getName(),employee.getEmail());
-        employeeService.saveEmployee(employee);
+    boolean exist= employeeService.checkExistance(employee.getName(),employee.getEmail());
+    if(exist){
+        return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists","No name"));
+    }
+    Employee em1=employeeService.saveEmployee(employee);
+    if(em1.equals(null)){
+        return ResponseEntity.status(500).body(new RegisterResponseDto("Error saving the user","No name"));
+    }
+    return ResponseEntity.status(201).body(new RegisterResponseDto("User created succesfully",em1.getName()));
+
 
     }
     
