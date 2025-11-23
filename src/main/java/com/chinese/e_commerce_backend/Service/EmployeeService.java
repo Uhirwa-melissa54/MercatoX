@@ -23,6 +23,19 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+    public boolean loginEmployee(String email,String password){
+        List<Employee> employees= employeeRepository.findByEmail(email);
+        if(employees.isEmpty()){
+            return false;
+        }
+        else {
+            if()
+        }
+
+    }
+
+
+
 
     
 }
