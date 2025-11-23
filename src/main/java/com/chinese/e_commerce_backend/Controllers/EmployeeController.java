@@ -1,14 +1,18 @@
 package com.chinese.e_commerce_backend.Controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chinese.e_commerce_backend.Service.EmployeeService;
 import com.chinese.e_commerce_backend.entities.Employee;
+import com.chinese.e_commerce_backend.dto.RegisterResponseDto;
 import java.util.*;
 
 
-@RestController("/employee")
+@RestController
+@RequestMapping("/employee")
 public class EmployeeController {
     private EmployeeService employeeService;
     @PostMapping("/signup")
