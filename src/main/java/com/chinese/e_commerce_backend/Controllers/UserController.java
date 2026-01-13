@@ -36,5 +36,9 @@ public class UserController {
         var userDto=new UserDto(user.getId(),user.getUsername(),user.getEmail());
         return ResponseEntity.ok(userDto);
     }
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody UserDto userDto){
+
+    }
 
 }

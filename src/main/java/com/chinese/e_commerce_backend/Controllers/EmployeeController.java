@@ -32,7 +32,7 @@ public class EmployeeController {
 
        @PostMapping("/login")
     ResponseEntity<RegisterResponseDto> signin(Employee employee){
-    boolean exist= employeeService.findByEmail
+    
     if(exist){
         return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists","No name"));
     }
