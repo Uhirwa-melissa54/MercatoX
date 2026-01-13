@@ -1,6 +1,9 @@
 package com.chinese.e_commerce_backend.Controllers;
 
+import com.chinese.e_commerce_backend.Service.UserService;
+import com.chinese.e_commerce_backend.dto.RegisterResponseDto;
 import com.chinese.e_commerce_backend.dto.UserDto;
+import com.chinese.e_commerce_backend.entities.User;
 import com.chinese.e_commerce_backend.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -15,6 +18,7 @@ import java.util.Set;
 @RequestMapping("/users")
 public class UserController {
     UserRepository userRepository;
+    UserService userService;
 //    @GetMapping
 //    public List<UserDto> findAll(
 //            @RequestParam(required = false,defaultValue = "") String sort
@@ -37,9 +41,19 @@ public class UserController {
 //        return ResponseEntity.ok(userDto);
 //    }
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody UserDto userDto){
+    public RegisterResponseDto register(@RequestBody User user){
+        User savedUser=userService.register(user);
+        if(savedUser!=null){
+            return new RegisterResponseDto("User registered successfully",savedUser.getUsername());
+        }
+        else{
+            return new RegisterResponseDto("User not created",null);
+
+        }
 
 
     }
+    @PostMapping("/login")
+    public 
 
 }
