@@ -14,33 +14,38 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
-    public boolean checkExistance(String name, String email){
+    public boolean checkExistance(String name, String email) {
         List<Employee> existEm = employeeRepository.findByNameAndEmail(name, email);
         return !existEm.isEmpty();
     }
 
-    public Employee saveEmployee(Employee employee){
+    public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    public boolean checkEmail(String email){
+    public boolean checkEmail(String email) {
         Employee employee = employeeRepository.findByEmail(email);
-           if (employee == null) {
+        if (employee == null) {
             return false;
         }
         return true;
 
     }
 
-    public boolean loginEmployee(String email, String password){
-        Employee employee = employeeRepository.findByEmail(email);
-        boolean exist=checkEmail(email);
-        if(exist){
-            return employee.getPassword().equals(password);
-        }
-        else{
-            return false;
-        }
-        
+    public Employee create(Employee employee) {
+        return employeeRepository.save(employee);
     }
-}
+    public Employee loginEmployee(String identifier, String password) {
+        Employee employee = employeeRepository
+                .findByEmailOrUsername(identifier, identifier)
+                .orElseThrow(() -> new RuntimeException("User does not exist"));
+
+        if (!employee.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        return employee;
+    }
+
+   }
+

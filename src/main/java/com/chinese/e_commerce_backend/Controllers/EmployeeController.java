@@ -19,11 +19,11 @@ public class EmployeeController {
     ResponseEntity<RegisterResponseDto> signup(Employee employee){
     boolean exist= employeeService.checkExistance(employee.getName(),employee.getEmail());
     if(exist){
-        return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists","No name"));
+        return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists",null));
     }
     Employee em1=employeeService.saveEmployee(employee);
     if(em1.equals(null)){
-        return ResponseEntity.status(500).body(new RegisterResponseDto("Error saving the user","No name"));
+        return ResponseEntity.status(500).body(new RegisterResponseDto("Error saving the user",null));
     }
     return ResponseEntity.status(201).body(new RegisterResponseDto("User created succesfully",em1.getName()));
 
