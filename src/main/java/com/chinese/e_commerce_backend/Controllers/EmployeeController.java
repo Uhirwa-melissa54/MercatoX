@@ -1,5 +1,6 @@
 package com.chinese.e_commerce_backend.Controllers;
 
+import com.chinese.e_commerce_backend.dto.LoginDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,21 +20,6 @@ public class EmployeeController {
     ResponseEntity<RegisterResponseDto> signup(Employee employee){
     boolean exist= employeeService.checkExistance(employee.getName(),employee.getEmail());
     if(exist){
-        return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists",null));
-    }
-    Employee em1=employeeService.saveEmployee(employee);
-    if(em1.equals(null)){
-        return ResponseEntity.status(500).body(new RegisterResponseDto("Error saving the user",null));
-    }
-    return ResponseEntity.status(201).body(new RegisterResponseDto("User created succesfully",em1.getName()));
-
-
-    }
-
-       @PostMapping("/login")
-    ResponseEntity<RegisterResponseDto> signin(Employee employee){
-    
-    if(exist){
         return ResponseEntity.status(409).body(new RegisterResponseDto("User already exists","No name"));
     }
     Employee em1=employeeService.saveEmployee(employee);
@@ -44,6 +30,18 @@ public class EmployeeController {
 
 
     }
+
+    ResponseEntity<RegisterResponseDto> signin(LoginDto loginDto){
+        Employee em1=employeeService.loginEmployee(loginDto.getIdentifier(),loginDto.getPassword());
+        return ResponseEntity.status(200).body(new RegisterResponseDto("Login successfully",em1.getName()));
+
+    }
+
+
+
+
+
+
 
 
     
