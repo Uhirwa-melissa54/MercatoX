@@ -31,4 +31,5 @@ public class User {
     private String email;
     @Column(name="password",nullable = false)
     private String password;
+
 }

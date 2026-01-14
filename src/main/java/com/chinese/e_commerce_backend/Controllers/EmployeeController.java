@@ -2,6 +2,7 @@ package com.chinese.e_commerce_backend.Controllers;
 
 import com.chinese.e_commerce_backend.dto.LoginDto;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,12 +31,15 @@ public class EmployeeController {
 
 
     }
-
+@PostMapping("/login")
     ResponseEntity<RegisterResponseDto> signin(LoginDto loginDto){
         Employee em1=employeeService.loginEmployee(loginDto.getIdentifier(),loginDto.getPassword());
         return ResponseEntity.status(200).body(new RegisterResponseDto("Login successfully",em1.getName()));
 
     }
+
+  @GetMapping("/allProducts")
+
 
 
 

@@ -52,11 +52,7 @@ public class Product {
             nullable = false
     )
     private int productStock;
-    public Product(String productName, double productPrice, int productStock) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productStock = productStock;
-    }
+   private String productImageUrl;
 
 
 

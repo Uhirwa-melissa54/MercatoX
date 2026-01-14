@@ -14,14 +14,14 @@ import lombok.Data;
 public class Employee {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
     @Column(nullable=false)
-    public String name;
-    public String email;
-    public int roleId;
-    public String locationSector;
-    public String locationCell;
-    public String password;
-    public String username;
+    private String name;
+    private String email;
+    private int roleId;
+    private String locationSector;
+    private String locationCell;
+    private String password;
+    private String username;
     
 }
