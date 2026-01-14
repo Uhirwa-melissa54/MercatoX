@@ -1,11 +1,9 @@
 package com.chinese.e_commerce_backend.Controllers;
 
 import com.chinese.e_commerce_backend.dto.LoginDto;
+import com.chinese.e_commerce_backend.entities.Product;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.chinese.e_commerce_backend.Service.EmployeeService;
 import com.chinese.e_commerce_backend.entities.Employee;
@@ -38,7 +36,12 @@ public class EmployeeController {
 
     }
 
-  @GetMapping("/allProducts")
+  @PostMapping("/createProduct")
+    ResponseEntity<RegisterResponseDto> AddNewProduct(@RequestBody Product product){
+        Product p1=employeeService.createProduct(product);
+        return ResponseEntity.status(201).body(new RegisterResponseDto("New product created successfully",p1.getProductName()));
+
+  }
 
 
 

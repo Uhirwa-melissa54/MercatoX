@@ -18,6 +18,7 @@ public class Employee {
     @Column(nullable=false)
     private String name;
     private String email;
+    private String role;
     private int roleId;
     private String locationSector;
     private String locationCell;
