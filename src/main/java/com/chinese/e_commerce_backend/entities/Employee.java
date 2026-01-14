@@ -22,6 +22,6 @@ public class Employee {
     public String locationSector;
     public String locationCell;
     public String password;
-
+    public String username;
     
 }
