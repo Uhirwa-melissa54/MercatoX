@@ -1,6 +1,7 @@
 package com.chinese.e_commerce_backend.Controllers;
 
 import com.chinese.e_commerce_backend.Service.UserService;
+import com.chinese.e_commerce_backend.dto.LoginDto;
 import com.chinese.e_commerce_backend.dto.RegisterResponseDto;
 import com.chinese.e_commerce_backend.dto.UserDto;
 import com.chinese.e_commerce_backend.entities.User;
@@ -54,7 +55,14 @@ public class UserController {
 
     }
     @PostMapping("/login")
-    public RegisterResponseDto login(@RequestBody UserDto userDto){
+    public RegisterResponseDto login(@RequestBody LoginDto loginDto){
+        User loggedUser=userService.login(loginDto);
+        if(loggedUser!=null){
+            return new RegisterResponseDto("Logged in successfully",loggedUser.getUsername());
+        }
+        else{
+            return new RegisterResponseDto("User not logged in",null);
+        }
 
     }
 

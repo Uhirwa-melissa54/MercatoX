@@ -1,6 +1,9 @@
 package com.chinese.e_commerce_backend.dto;
 
-public class loginDto {
+import lombok.Data;
+
+@Data
+public class LoginDto {
     private String identifier; // username OR email
     private String password;
 }
