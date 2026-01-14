@@ -1,10 +1,12 @@
 package com.chinese.e_commerce_backend.Service;
 
+import com.chinese.e_commerce_backend.entities.Product;
 import com.chinese.e_commerce_backend.repository.EmployeeRepository;
 import com.chinese.e_commerce_backend.entities.Employee;
 
 import java.util.List;
 
+import com.chinese.e_commerce_backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final ProductRepository productRepository;
 
     public boolean checkExistance(String name, String email) {
         List<Employee> existEm = employeeRepository.findByNameAndEmail(name, email);
@@ -46,6 +49,9 @@ public class EmployeeService {
 
         return employee;
     }
+public Product createProduct(Product product) {
+        return productRepository.save(product);
 
+}
    }
 
