@@ -36,6 +36,7 @@ public class EmployeeController {
 
     }
 
+
   @PostMapping("/createProduct")
     ResponseEntity<RegisterResponseDto> AddNewProduct(@RequestBody Product product){
         Product p1=employeeService.createProduct(product);
